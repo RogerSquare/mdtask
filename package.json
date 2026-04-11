@@ -1,0 +1,46 @@
+{
+  "name": "mdtask",
+  "version": "1.0.0",
+  "description": "Terminal task manager using Markdown files with YAML frontmatter",
+  "type": "module",
+  "bin": {
+    "mdtask": "./dist/cli.js"
+  },
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "Roger Ochoa",
+  "license": "MIT",
+  "keywords": [
+    "cli",
+    "task",
+    "markdown",
+    "yaml",
+    "kanban",
+    "todo",
+    "terminal"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RogerSquare/mdtask"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.3"
+  }
+}

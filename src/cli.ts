@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
+import path from "node:path";
 import chalk from "chalk";
 import {
   initTaskDir,
@@ -9,6 +10,7 @@ import {
   loadAllTasks,
   updateTask,
   findTaskDir,
+  setTasksDir,
 } from "./task.js";
 import type { TaskPriority, TaskStatus, TaskType } from "./task.js";
 import {
@@ -24,7 +26,17 @@ program
   .version("1.0.0")
   .description(
     "Terminal task manager using Markdown files with YAML frontmatter"
-  );
+  )
+  .option("-d, --dir <path>", "Use a custom tasks directory instead of .tasks/");
+
+// Apply --dir before any command runs
+program.hook("preAction", () => {
+  const opts = program.opts();
+  if (opts.dir) {
+    const dir = path.resolve(opts.dir);
+    setTasksDir(dir);
+  }
+});
 
 // --- init ---
 program

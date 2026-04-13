@@ -1,6 +1,14 @@
 # mdtask
 
-**Terminal task manager using Markdown files with YAML frontmatter.**
+> Terminal task manager using Markdown files with YAML frontmatter — the filesystem is your database.
+
+**Live demo:** `npx mdtask init` in any project directory (or `npm install -g mdtask`)
+**Stack:** Node.js · TypeScript · `gray-matter` for YAML · Ink for TUI · Vitest
+**Status:** Active
+
+## What's interesting technically
+
+Tasks are plain Markdown files in `.tasks/`, not a database. `grep`, `git blame`, and hand-edit all work on them — the CLI is a convenient accelerator around filesystem operations, not a gatekeeper. The filesystem is the primary interface; the CLI is ergonomics on top. Side effect: `.tasks/` is gittable, which turns task history into first-class version-controlled documentation of what a project actually did. Trade-off: no complex queries (joins, aggregates) — if you need those, this pattern isn't for you.
 
 mdtask stores tasks as plain Markdown files in a `.tasks/` directory inside your project. Each task has structured metadata (status, priority, tags) in YAML frontmatter and a freeform description body. No database, no cloud service -- just files you can read, grep, and version control.
 
